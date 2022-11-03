@@ -1,4 +1,8 @@
 import express from 'express'
+import morgan from 'morgan';
+import cors from 'cors';
+import path from 'path';
+import './database'
 
 //crear una instalcia de express
 const app = express();
@@ -11,4 +15,19 @@ app.listen( app.set('port'), ()=>{
     console.log( 'Estoy en el puerto ' + app.get('port') );
 } )
 
-console.log("Hola Mundo");
+//middlewares: funciones que se configuran antes de las rutas
+app.use(morgan('dev')); //Da informacion extra en la terminal
+app.use(cors());//pedir peticiones remotas
+
+//middlewares para interpretar los objetos json que llegan en las peticiones
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+//cargar un archivo estático
+app.use(express.static( path.join(__dirname, '../public') ))
+//console.log(path.join(__dirname, '../public')) sirve para pronbar la ruta
+
+//Rutas: nombre de dominio + ----
+// http://localhost:4000/prueba
+app.get('/productos', (req, res)=>{
+    res.send('Esto es una prueba de la peticion GET')
+})
