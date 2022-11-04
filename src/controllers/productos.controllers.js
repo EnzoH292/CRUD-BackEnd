@@ -68,4 +68,19 @@ export const editarProducto = async (req, res) => {
             mensaje: 'El producto solicitado, no se pudo modificar'
         })
     }
-}
+};
+export const borrarProducto = async (req, res) => {
+    try {
+        //buscar un producto por id y borrar
+        await Producto.findByIdAndDelete(req.params.id);
+        //responder al front end si se pudo eliminar un producto
+        res.status(200).json({
+            mensaje: "El producto fue correctamente eliminado" 
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: 'El producto solicitado, no pudo ser eliminado'
+        })
+    }
+};

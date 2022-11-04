@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {crearProductos,editarProducto,listarProductos, obtenerProducto,} from "../controllers/productos.controllers";
+import {borrarProducto, crearProductos,editarProducto,listarProductos, obtenerProducto,} from "../controllers/productos.controllers";
 
 const router = Router(); //se inicializa el enrutador de express
 
@@ -9,7 +9,7 @@ router.route("/productos").get(listarProductos).post(crearProductos);
 router.route('/productos/:id')
 .get(obtenerProducto)
 .put(editarProducto)
-.delete()
+.delete(borrarProducto)
 
 
 export default router;
