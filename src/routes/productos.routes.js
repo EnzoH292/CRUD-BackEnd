@@ -1,9 +1,16 @@
 import { Router } from "express";
-import {crearProductos,listarProductos,} from "../controllers/productos.controllers";
+import {crearProductos,listarProductos, obtenerProducto,} from "../controllers/productos.controllers";
 
 const router = Router(); //se inicializa el enrutador de express
 
 router.route("/productos").get(listarProductos).post(crearProductos);
+
+
+router.route('/productos/:id')
+.get(obtenerProducto)
+.put()
+.delete()
+
 
 export default router;
 // app.get('/productos', (req, res)=>{
