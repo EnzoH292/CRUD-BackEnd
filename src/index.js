@@ -2,9 +2,10 @@ import express from 'express'
 import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
+import productosRouter from './routes/productos.routes';
 import './database'
 
-//crear una instalcia de express
+//crear una instalciar de express
 const app = express();
 
 //creamos una variable
@@ -28,6 +29,4 @@ app.use(express.static( path.join(__dirname, '../public') ))
 
 //Rutas: nombre de dominio + ----
 // http://localhost:4000/prueba
-app.get('/productos', (req, res)=>{
-    res.send('Esto es una prueba de la peticion GET')
-})
+app.use('/apicafe', productosRouter)
